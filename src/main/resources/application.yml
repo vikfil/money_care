@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/money_care
+    username: postgres
+    password: admin
+    initialization-mode: always
+    continue-on-error: true
+    platform: postgres
+
+
+
+
+
+
