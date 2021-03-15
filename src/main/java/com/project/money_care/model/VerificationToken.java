@@ -22,14 +22,14 @@ public class VerificationToken implements Serializable {
 
     private String token;
 
-    @OneToOne(targetEntity = Users.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
-    private Users user;
+    private User user;
 
     //@Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime expiryDate;
 
-    public VerificationToken(final String token, final Users user) {
+    public VerificationToken(final String token, final User user) {
         this.token = token;
         this.user = user;
         this.expiryDate = calculateExpiryDate(EXPIRATION);

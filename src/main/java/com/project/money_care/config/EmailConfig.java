@@ -14,37 +14,37 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"com.project.money_care.service"})
 public class EmailConfig {
 
-    @Value("${mail.host}")
+    @Value("${spring.mail.host}")
     private String host;
 
-    @Value("${mail.port}")
+    @Value("${spring.mail.port}")
     private Integer port;
 
-    @Value("${mail.username}")
+    @Value("${spring.mail.username}")
     private String username;
 
-    @Value("${mail.password}")
+    @Value("${spring.mail.password}")
     private String password;
 
-    @Value("${mail.transport.protocol}")
+    @Value("${spring.mail.transport.protocol}")
     private String mailTransportProtocol;
 
-    @Value("${mail.smtp.auth}")
-    private String maiSmtpAuth;
+    @Value("${spring.mail.smtp.auth}")
+    private String mailSmtpAuth;
 
-    @Value("${mail.smtp.starttls.enable}")
+    @Value("${spring.mail.smtp.starttls.enable}")
     private String mailSmtpStarttlsEnable;
 
-    @Value("${mail.smtp.socketFactory.port}")
+    @Value("${spring.mail.smtp.socketFactory.port}")
     private String mailSmtpSocketFactoryPort;
 
-    @Value("${mail.smtp.socketFactory.class}")
+    @Value("${spring.mail.smtp.socketFactory.class}")
     private String mailSmtpSocketFactoryClass;
 
-    @Value("${mail.smtp.socketFactory.fallback}")
+    @Value("${spring.mail.smtp.socketFactory.fallback}")
     private String mailSmtpSocketFactoryFallback;
 
-    @Value("${mail.debug}")
+    @Value("${spring.mail.debug}")
     private String mailDebug;
 
     @Bean
@@ -61,7 +61,7 @@ public class EmailConfig {
     private Properties getMailProperties() {
         Properties properties = new Properties();
         properties.setProperty("mail.transport.protocol", mailTransportProtocol);
-        properties.setProperty("mail.smtp.auth", maiSmtpAuth);
+        properties.setProperty("mail.smtp.auth", mailSmtpAuth);
         properties.setProperty("mail.smtp.starttls.enable", mailSmtpStarttlsEnable);
         properties.setProperty("mail.smtp.socketFactory.port", mailSmtpSocketFactoryPort);
         properties.setProperty("mail.smtp.socketFactory.class", mailSmtpSocketFactoryClass);

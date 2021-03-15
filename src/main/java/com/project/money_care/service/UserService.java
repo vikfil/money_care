@@ -1,19 +1,14 @@
 package com.project.money_care.service;
 
 import com.project.money_care.enums.TokenValidation;
-import com.project.money_care.model.Users;
+import com.project.money_care.model.User;
 import com.project.money_care.model.VerificationToken;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.util.Optional;
-
-public interface UserService {
-    Users findByEmail(String email);
+public interface UserService extends UserDetailsService {
 
     VerificationToken updateTokenExpiration(String token);
-
-    Users newUserAccount(Users account);
-
-    void createVerificationToken(Users user);
-
+    User newUserAccount(User account);
+    void createVerificationToken(User user);
     TokenValidation validateVerificationToken(String token);
 }

@@ -1,6 +1,5 @@
 package com.project.money_care.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,9 +19,9 @@ public class Expensive implements Serializable {
 
     private int amount;
 
-    @ManyToOne(targetEntity = Users.class)
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
-    private Users user;
+    private User user;
 
 
 

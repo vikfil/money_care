@@ -3,7 +3,7 @@ package com.project.money_care.controller;
 import com.project.money_care.dto.UserDto;
 import com.project.money_care.enums.TokenValidation;
 import com.project.money_care.mapper.UserMapper;
-import com.project.money_care.model.Users;
+import com.project.money_care.model.User;
 import com.project.money_care.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,8 +51,8 @@ public class RegistrationController {
         return user;
     }
 
-    @GetMapping(value = "/user")
-    public Users getUser(@RequestParam("email") String email) {
-        return userService.findByEmail(email);
-    }
+//    @GetMapping(value = "/user")
+//    public User getUser(@RequestParam("email") String email) {
+//        return userService.findByEmail(email);
+//    }
 }

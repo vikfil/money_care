@@ -1,29 +1,35 @@
-create table users (
-id serial not null primary key,
-email varchar(100) not null,
-password varchar(255) not null,
-active boolean not null,
-role varchar(10) not null
-
+CREATE TABLE IF NOT EXISTS users (
+id SERIAL NOT NULL,
+email VARCHAR(100) NOT NULL,
+password VARCHAR(255) NOT NULL,
+active BOOLEAN NOT NULL,
+role VARCHAR(30) NOT NULL,
+PRIMARY KEY (id)
 );
 
-create table incomes(
-id serial not null primary key ,
-category varchar(100) not null,
-amount int not null,
-user_id serial not null references users(id)
+CREATE TABLE IF NOT EXISTS income(
+id SERIAL NOT NULL,
+category VARCHAR(100) NOT NULL,
+amount NUMERIC NOT NULL,
+user_id SERIAL NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (user_id) references users(id)
 );
 
-create table expensive(
-id serial not null primary key,
-category varchar(100) not null,
-amount int not null,
-user_id serial not null references users(id)
+CREATE TABLE IF NOT EXISTS expensive(
+id SERIAL NOT NULL,
+category VARCHAR(100) NOT NULL,
+amount NUMERIC NOT NULL,
+user_id SERIAL NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-create table verification_token(
-id serial not null primary key,
-expiry_date timestamp,
-token varchar(125) not null,
-user_id serial not null references users(id)
+CREATE TABLE IF NOT EXISTS verification_token(
+id SERIAL NOT NULL,
+expiry_date TIMESTAMP,
+token VARCHAR(125) NOT NULL,
+user_id SERIAL NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (user_id) REFERENCES users(id)
 );
