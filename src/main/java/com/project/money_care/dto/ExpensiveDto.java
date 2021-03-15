@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 public class ExpensiveDto {
     private Long id;
     private String category;
-    private int amount;
+    private double amount;
+    private UserDto user;
 }

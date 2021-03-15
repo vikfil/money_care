@@ -9,5 +9,5 @@ public interface IncomeService {
     List<IncomesDto> findAllIncomes();
     void addIncomeCategory(IncomesDto incomesName);
     void editIncomeCategory(IncomesDto categoryWithChanges);
-    void deleteIncomeCategory(Long  id);
+    void deleteIncomeCategory(Long id);
 }

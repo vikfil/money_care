@@ -17,7 +17,7 @@ public class Expensive implements Serializable {
     @NotNull
     private String category;
 
-    private int amount;
+    private double amount;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
