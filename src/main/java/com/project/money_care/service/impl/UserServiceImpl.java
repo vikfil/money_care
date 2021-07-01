@@ -2,16 +2,14 @@ package com.project.money_care.service.impl;
 
 import com.project.money_care.enums.TokenValidation;
 import com.project.money_care.exception.EmailExistException;
-import com.project.money_care.exception.UserNotFound;
 import com.project.money_care.model.User;
 import com.project.money_care.model.VerificationToken;
 import com.project.money_care.repository.UserRepository;
 import com.project.money_care.repository.VerificationTokenRepository;
 import com.project.money_care.service.EmailService;
+import com.project.money_care.service.EmailValidator;
 import com.project.money_care.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,20 +18,13 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private static final String USER_NOT_FOUND = "User with email %s not found";
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final VerificationTokenRepository tokenRepository;
     private final EmailService emailService;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, VerificationTokenRepository tokenRepository, @Lazy EmailService emailService) {
-        this.userRepository = userRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.tokenRepository = tokenRepository;
-        this.emailService = emailService;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
@@ -53,6 +44,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User newUserAccount(User userAccount) {
+        boolean isEmailValid = EmailValidator.isValid(userAccount.getEmail());
+        if (!isEmailValid) {
+            throw new IllegalStateException(userAccount.getEmail() + " is not valid");
+        }
         if (emailExists(userAccount.getEmail())) {
             throw new EmailExistException("There is an account with that email address: " + userAccount.getEmail());
         }

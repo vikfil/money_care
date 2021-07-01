@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
-    private final UserRepository userRepository;
 
     @Override
     public void sendMail(String to, String subject, String message) {
