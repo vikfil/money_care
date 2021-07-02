@@ -4,6 +4,7 @@ import com.project.money_care.dto.UserDto;
 import com.project.money_care.enums.TokenValidation;
 import com.project.money_care.mapper.UserMapper;
 import com.project.money_care.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("security")
 public class RegistrationController {
 
     private final UserService userService;
     private final UserMapper userMapper;
-
-    @Autowired
-    public RegistrationController(UserService userService, UserMapper userMapper) {
-        this.userService = userService;
-        this.userMapper = userMapper;
-    }
 
     @PostMapping(value = "/registration")
     public ResponseEntity registerUserAccount(@RequestBody UserDto accountDto) {

@@ -1,6 +1,5 @@
 package com.project.money_care.service.impl;
 
-import com.project.money_care.repository.UserRepository;
 import com.project.money_care.service.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
